@@ -103,3 +103,9 @@ float32x4_t v = ary.val[2];
 ## Contributing
 
 Change README.md and send a pull request.
+
+## Author
+
+This has been provided as part of the development that happens at [Nifty](http://www.thenifty.me).
+
+With Nifty, the automated measurement app for easy and confident shopping, online shopping is a unique experience tailored to each shopper allowing them to buy garments with the perfect fit even on the go.
