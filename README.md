@@ -70,6 +70,12 @@ float values[5] = { 1.0, 2.0, 3.0, 4.0, 5.0 };
 float32x4_t v = vld1q_f32(values);
 // => v = { 1.0, 2.0, 3.0, 4.0 }
 ```
+- load same value for all lanes: **vld1q_dup_f32** or **vld1q_dup_f64**
+```c
+float val = 3.0;
+float32x4_t v = vld1q_dup_f32(&val);
+// => v = { 3.0, 3.0, 3.0, 3.0 }
+```
 
 #### Store
 
