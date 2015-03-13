@@ -82,7 +82,7 @@ vst1q_f32(values, v);
 ```
 - store lane of array of vectors: **vst4q_lane_f16** or **vst4q_lane_f32** or **vst4q_lane_f64** (change to **vst1...** / **vst2...** / **vst3...** for other array lengths);
 ```c
-float32_4t v0 = { 1.0, 2.0, 3.0, 4.0 }, v1 = { 5.0, 6.0, 7.0, 8.0 }, v2 = { 9.0, 10.0, 11.0, 12.0 }, v3 = { 13.0, 14.0, 15.0, 16.0 };
+float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 }, v1 = { 5.0, 6.0, 7.0, 8.0 }, v2 = { 9.0, 10.0, 11.0, 12.0 }, v3 = { 13.0, 14.0, 15.0, 16.0 };
 float32x4x4_t u = { v0, v1, v2, v3 };
 float buff[4];
 vst4q_lane_f32(buff, u, 0);
@@ -93,9 +93,9 @@ vst4q_lane_f32(buff, u, 0);
 
 - access to values: **val[n]**
 ```c
-float32_4t v0 = { 1.0, 2.0, 3.0, 4.0 }, v1 = { 5.0, 6.0, 7.0, 8.0 }, v2 = { 9.0, 10.0, 11.0, 12.0 }, v3 = { 13.0, 14.0, 15.0, 16.0 };
+float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 }, v1 = { 5.0, 6.0, 7.0, 8.0 }, v2 = { 9.0, 10.0, 11.0, 12.0 }, v3 = { 13.0, 14.0, 15.0, 16.0 };
 float32x4x4_t ary = { v0, v1, v2, v3 };
-float32_4t v = ary.val[2];
+float32x4_t v = ary.val[2];
 // v = { 9.0, 10.0, 11.0, 12.0 }
 ```
 
