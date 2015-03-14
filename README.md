@@ -77,6 +77,11 @@ float32x4_t v = vld1q_dup_f32(&val);
 // => v = { 3.0, 3.0, 3.0, 3.0 }
 ```
 
+- set all lanes to a hardcoded value: **vmovq_n_f16** or **vmovq_n_f32** or **vmovq_n_f64**
+```c
+float32x4_t v = vmovq_n_f32(1.5);
+// => v = { 1.5, 1.5, 1.5, 1.5 }
+```
 #### Store
 
 - store vector: **vst1q_f32** or **vst1q_f64**
