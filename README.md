@@ -121,7 +121,10 @@ float32x4_t v3 = vbslq_f32(mask, ones, twos);  // will select first if mask 0, s
 // => v3 = { 2.0, 1.0, 2.0, 2.0 }
 ```
 
+## Links
 
+- [summary of NEON intrinsics](http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0491h/CIHJBEFE.html)
+- [ARM NEON intrinsics reference](http://infocenter.arm.com/help/topic/com.arm.doc.ihi0073a/IHI0073A_arm_neon_intrinsics_ref.pdf?resultof=%22%76%6d%6f%76%71%5f%6e%5f%66%33%32%22%20)
 
 ## Contributing
 
