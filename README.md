@@ -28,10 +28,10 @@ float32x4_t v1 = { 1.0, 2.0, 3.0, 4.0 }, v2 = { 1.0, 1.0, 1.0, 1.0 };
 float32x4_t prod = vmulq_f32(v1, v2);
 // => prod = { 1.0, 2.0, 3.0, 4.0 }
 ```
-- multiply and accumulate: **vmlaq_n_f32** or **vmlaq_n_f64**
+- multiply and accumulate: **vmlaq_f32**
 ```c
 float32x4_t v1 = { 1.0, 2.0, 3.0, 4.0 }, v2 = { 2.0, 2.0, 2.0, 2.0 }, v3 = { 3.0, 3.0, 3.0, 3.0 };
-float32x4_t acc = vmlaq_n_f32(v3, v1, v2);  // S = A + B * C
+float32x4_t acc = vmlaq_f32(v3, v1, v2);  // S = A + B * C
 // => acc = { 5.0, 7.0, 9.0, 11.0 }
 ```
 - multiply by a scalar: **vmulq_n_f32** or **vmulq_n_f64**
