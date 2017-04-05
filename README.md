@@ -110,18 +110,7 @@ float32x4_t v = ary.val[2];
 // => v = { 9.0, 10.0, 11.0, 12.0 }
 ```
 
-### Conditionals
-
-- ternary operator: use vector comparison (for example **vcltq_f32** for *less than* comparison)
-```c
-float32x4_t v1 = { 1.0, 0.0, 1.0, 0.0 }, v2 = { 0.0, 1.0, 1.0, 0.0 };
-float32x4_t mask = vcltq_f32(v1, v2);  // v1 < v2
-float32x4_t ones = vmovq_n_f32(1.0), twos = vmovq_n_f32(2.0);
-float32x4_t v3 = vbslq_f32(mask, ones, twos);  // will select first if mask 0, second if mask 1
-// => v3 = { 2.0, 1.0, 2.0, 2.0 }
-```
-
-### Max and min
+#### Max and min
 
 - max of two vectors, element by element:
 ```c
@@ -153,6 +142,17 @@ float32x2_t minOfHalfs = vpmin_f32(vget_low_f32(f), vget_high_f32(f));
 float32x2_t minOfMinOfHalfs = vpmin_f32(minOfHalfs, minOfHalfs);
 float minValue = vget_lane_f32(minOfMinOfHalfs, 0);
 // => minValue = 1.0
+```
+
+### Conditionals
+
+- ternary operator: use vector comparison (for example **vcltq_f32** for *less than* comparison)
+```c
+float32x4_t v1 = { 1.0, 0.0, 1.0, 0.0 }, v2 = { 0.0, 1.0, 1.0, 0.0 };
+float32x4_t mask = vcltq_f32(v1, v2);  // v1 < v2
+float32x4_t ones = vmovq_n_f32(1.0), twos = vmovq_n_f32(2.0);
+float32x4_t v3 = vbslq_f32(mask, ones, twos);  // will select first if mask 0, second if mask 1
+// => v3 = { 2.0, 1.0, 2.0, 2.0 }
 ```
 
 ## Links
