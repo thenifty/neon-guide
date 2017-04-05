@@ -31,14 +31,14 @@ float32x4_t prod = vmulq_f32(v1, v2);
 - multiply and accumulate: **vmlaq_f32**
 ```c
 float32x4_t v1 = { 1.0, 2.0, 3.0, 4.0 }, v2 = { 2.0, 2.0, 2.0, 2.0 }, v3 = { 3.0, 3.0, 3.0, 3.0 };
-float32x4_t acc = vmlaq_f32(v3, v1, v2);  // S = A + B * C
+float32x4_t acc = vmlaq_f32(v3, v1, v2);  // acc = v3 + v1 * v2
 // => acc = { 5.0, 7.0, 9.0, 11.0 }
 ```
 - multiply by a scalar: **vmulq_n_f32** or **vmulq_n_f64**
 ```c
 float32x4_t v = { 1.0, 2.0, 3.0, 4.0 };
 float32_t s = 3.0;
-float32x4_t prod = vmulq_n_f32(ary1, s);
+float32x4_t prod = vmulq_n_f32(v, s);
 // => prod = { 3.0, 6.0, 9.0, 12.0 }
 ```
 - multiply by a scalar and accumulate: **vmlaq_n_f32** or **vmlaq_n_f64**
@@ -119,6 +119,40 @@ float32x4_t mask = vcltq_f32(v1, v2);  // v1 < v2
 float32x4_t ones = vmovq_n_f32(1.0), twos = vmovq_n_f32(2.0);
 float32x4_t v3 = vbslq_f32(mask, ones, twos);  // will select first if mask 0, second if mask 1
 // => v3 = { 2.0, 1.0, 2.0, 2.0 }
+```
+
+### Max and min
+
+- max of two vectors, element by element:
+```c
+float32x4_t v0 = { 5.0, 2.0, 3.0, 4.0 }, v1 = { 1.0, 6.0, 7.0, 8.0 };
+float32x4_t v2 = vmaxq_f32(v0, v1);
+// => v1 = { 5.0, 6.0, 7.0, 8.0 }
+```
+
+- max of vector elements, using folding maximum:
+```c
+float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 };
+float32x2_t maxOfHalfs = vpmax_f32(vget_low_f32(f), vget_high_f32(f));
+float32x2_t maxOfMaxOfHalfs = vpmax_f32(maxOfHalfs, maxOfHalfs);
+float maxValue = vget_lane_f32(maxOfMaxOfHalfs, 0);
+// => maxValue = 4.0
+```
+
+- min of two vectors, element by element:
+```c
+float32x4_t v0 = { 5.0, 2.0, 3.0, 4.0 }, v1 = { 1.0, 6.0, 7.0, 8.0 };
+float32x4_t v2 = vminq_f32(v0, v1);
+// => v1 = { 1.0, 2.0, 3.0, 4.0 }
+```
+
+- min of vector elements, using folding minimum:
+```c
+float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 };
+float32x2_t minOfHalfs = vpmin_f32(vget_low_f32(f), vget_high_f32(f));
+float32x2_t minOfMinOfHalfs = vpmin_f32(minOfHalfs, minOfHalfs);
+float minValue = vget_lane_f32(minOfMinOfHalfs, 0);
+// => minValue = 1.0
 ```
 
 ## Links
