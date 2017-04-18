@@ -122,7 +122,7 @@ float32x4_t v2 = vmaxq_f32(v0, v1);
 - max of vector elements, using folding maximum:
 ```c
 float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 };
-float32x2_t maxOfHalfs = vpmax_f32(vget_low_f32(f), vget_high_f32(f));
+float32x2_t maxOfHalfs = vpmax_f32(vget_low_f32(v0), vget_high_f32(v0));
 float32x2_t maxOfMaxOfHalfs = vpmax_f32(maxOfHalfs, maxOfHalfs);
 float maxValue = vget_lane_f32(maxOfMaxOfHalfs, 0);
 // => maxValue = 4.0
@@ -138,7 +138,7 @@ float32x4_t v2 = vminq_f32(v0, v1);
 - min of vector elements, using folding minimum:
 ```c
 float32x4_t v0 = { 1.0, 2.0, 3.0, 4.0 };
-float32x2_t minOfHalfs = vpmin_f32(vget_low_f32(f), vget_high_f32(f));
+float32x2_t minOfHalfs = vpmin_f32(vget_low_f32(v0), vget_high_f32(v0));
 float32x2_t minOfMinOfHalfs = vpmin_f32(minOfHalfs, minOfHalfs);
 float minValue = vget_lane_f32(minOfMinOfHalfs, 0);
 // => minValue = 1.0
