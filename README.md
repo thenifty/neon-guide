@@ -2,6 +2,8 @@
 
 Makes ARM NEON documentation accessible (with examples). Born from frustration with ARM documentation and general lack of examples.
 
+Update: earlier this year ARM released [new docs](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a)
+
 ## Intro
 
 When you convert your iOS code to NEON, usually it's inside loops that can be written in parallel code. Also you have to keep in mind that the more load/store operations you have, the slower your code will be.
