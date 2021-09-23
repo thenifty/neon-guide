@@ -118,7 +118,7 @@ float32x4_t v = ary.val[2];
 ```c
 float32x4_t v0 = { 5.0, 2.0, 3.0, 4.0 }, v1 = { 1.0, 6.0, 7.0, 8.0 };
 float32x4_t v2 = vmaxq_f32(v0, v1);
-// => v1 = { 5.0, 6.0, 7.0, 8.0 }
+// => v2 = { 5.0, 6.0, 7.0, 8.0 }
 ```
 
 - max of vector elements, using folding maximum:
@@ -134,7 +134,7 @@ float maxValue = vget_lane_f32(maxOfMaxOfHalfs, 0);
 ```c
 float32x4_t v0 = { 5.0, 2.0, 3.0, 4.0 }, v1 = { 1.0, 6.0, 7.0, 8.0 };
 float32x4_t v2 = vminq_f32(v0, v1);
-// => v1 = { 1.0, 2.0, 3.0, 4.0 }
+// => v2 = { 1.0, 2.0, 3.0, 4.0 }
 ```
 
 - min of vector elements, using folding minimum:
