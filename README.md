@@ -12,7 +12,39 @@ When you convert your iOS code to NEON, usually it's inside loops that can be wr
 
 This guide is about inline *NEON intrinsics*, which should work on both 32bit and 64bit architectures. Vectors are always supposed to be of length 4, but you can generally just remove the letter *q* in the instruction name to use 2-vectors.
 
+## Supported types
+
+While you can see all available types in [Apple's source code](https://opensource.apple.com/source/gcc/gcc-5659/gcc/config/arm/arm_neon.h.auto.html), there are mainly these scalar types contained in vectors:
+
+- `uint8` (really fast, but can only use for masks or short ranges)
+- `uint16` (typical fast values)
+- `uint32` (full precision)
+- `uint64` (I personally have never seen this used)
+- `int8`
+- `int16`
+- `int32`
+- `int64`
+- `float16` (doesn't seem supported by Apple CPU intrinsics, but it is supported in [Metal](https://developer.apple.com/metal/Metal-Shading-Language-Specification.pdf) for example)
+- `float32` (full precision and slowest type)
+- `poly` (used for [carryless multiplication](https://en.wikipedia.org/wiki/CLMUL_instruction_set) and useful for cryptography)
+
+These are then composed into vector types like `float32x4_t` or `int8x16_t`, to make full use of the available registers (total of 128 bits), an exception is `int8x8_t`. There are vector of vectors types as well, but they don't provide any speed bump over the standard 128 bit ones.
+
 ## Syntax
+
+### Header
+
+Include this header in iOS to include supported ARM intrinsics and types:
+
+```c
+#include <arm_neon.h>
+```
+
+[Source here](https://opensource.apple.com/source/gcc/gcc-5659/gcc/config/arm/arm_neon.h.auto.html).
+
+### Detecting support at build time
+
+To detect support for NEON at build time (e.g. build branches or pragmas, you want to exclude ARM instructions when running on the Simulator etc.) use `__ARM_NEON__`.
 
 ### Float
 
