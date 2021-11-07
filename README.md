@@ -2,7 +2,7 @@
 
 Makes ARM NEON documentation accessible (with examples). Born from frustration with ARM documentation and general lack of examples.
 
-Update: earlier this year ARM released [new docs](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a)
+**Update: earlier this year (2020) ARM released [new docs](https://developer.arm.com/architectures/instruction-sets/simd-isas/neon/neon-programmers-guide-for-armv8-a)**
 
 ## Intro
 
@@ -152,10 +152,12 @@ float minValue = vget_lane_f32(minOfMinOfHalfs, 0);
 ```c
 float32x4_t v1 = { 1.0, 0.0, 1.0, 0.0 }, v2 = { 0.0, 1.0, 1.0, 0.0 };
 float32x4_t mask = vcltq_f32(v1, v2);  // v1 < v2
-float32x4_t ones = vmovq_n_f32(1.0), twos = vmovq_n_f32(2.0);
+float32x4_t ones = vmovq_n_f32(10.0), twos = vmovq_n_f32(20.0); // the conditional branches: if condition is true returns 10.0, else returns 20.0
 float32x4_t v3 = vbslq_f32(mask, ones, twos);  // will select first if mask 0, second if mask 1
-// => v3 = { 2.0, 1.0, 2.0, 2.0 }
+// => v3 = { 20.0, 10.0, 20.0, 20.0 }
 ```
+
+Conditional branches are really bad for NEON cpus. In general we need eager execution (calculating both branches first, and then deciding which results to actually use in which lanes) and it's not possible to skip any steps.
 
 ## Links
 
