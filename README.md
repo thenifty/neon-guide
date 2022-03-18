@@ -121,7 +121,7 @@ float32x4_t v = vmovq_n_f32(1.5);
 - store vector: **vst1q_f32** or **vst1q_f64**
 ```c
 float32x4_t v = { 1.0, 2.0, 3.0, 4.0 };
-float values[5] = new float[5];
+float values[5];
 vst1q_f32(values, v);
 // => values = { 1.0, 2.0, 3.0, 4.0, #undef }
 ```
